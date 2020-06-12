@@ -1,0 +1,19 @@
+name: EnderBow
+version: 1.0.0
+author: flizz (Jan Sadownik)
+main: live.jansadownik.enderbow.EnderBow
+
+commands:
+  enderbow:
+    description: Gives enderbow
+    permission: enderbow.command.enderbow
+    usage: Type /<command> [player] to give enderbow
+
+permissions:
+  enderbow.*:
+    description: Gives all permissions
+    children:
+      enderbow.command.enderbow: true
+  enderbow.command.enderbow:
+    description: Lets you use /enderbow command
+    default: op
