@@ -19,20 +19,26 @@ public class GetPlayerCommandUtil {
 
     public Player getPlayer() {
         if (args.length == 0)
-            if (sender instanceof Player)
+            if (getCommandExecutor().equals("player")) {
                 p = (Player) sender;
-            else
+            } else {
                 warning = Messages.CommandTypePlayerName;
+            }
         else {
             p = Bukkit.getPlayerExact(args[0]);
             if (p == null) warning = Messages.CommandNoSuchPlayer;
         }
-
-
         return p;
     }
 
     public String getWarning() {
         return warning;
+    }
+
+    public String getCommandExecutor() {
+        if (sender instanceof Player)
+            return "player";
+        else
+            return "console";
     }
 }

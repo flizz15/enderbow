@@ -7,13 +7,17 @@ commands:
   enderbow:
     description: Gives enderbow
     permission: enderbow.command.enderbow
-    usage: Type /<command> [player] to give enderbow
+    usage: /<command> [player]
 
 permissions:
   enderbow.*:
     description: Gives all permissions
     children:
       enderbow.command.enderbow: true
+      enderbow.use.enderbow: true
   enderbow.command.enderbow:
     description: Lets you use /enderbow command
+    default: op
+  enderbow.use.enderbow:
+    description: Lets you use enderbow item
     default: op

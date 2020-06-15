@@ -1,8 +1,8 @@
 package live.jansadownik.enderbow.commands;
 
+import live.jansadownik.enderbow.Messages;
 import live.jansadownik.enderbow.items.ItemEnderBow;
 import live.jansadownik.enderbow.utils.GetPlayerCommandUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,6 +19,11 @@ public class EnderBowCommandExecutor implements CommandExecutor {
                 commandSender.sendMessage(playerValidator.getWarning());
                 return true;
             }
+            if (playerValidator.getCommandExecutor().equals("player"))
+                if (!(p.hasPermission("enderbow.command.enderbow"))) {
+                    commandSender.sendMessage(Messages.PlayerNotHavePermission);
+                    return true;
+                }
 
             ItemStack enderBow = new ItemEnderBow().getEnderBow();
             p.getInventory().addItem(enderBow);
