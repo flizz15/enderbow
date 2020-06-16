@@ -15,9 +15,13 @@ permissions:
     children:
       enderbow.command.enderbow: true
       enderbow.use.enderbow: true
+      enderbow.bypass.use.enderpearl: true
   enderbow.command.enderbow:
     description: Lets you use /enderbow command
     default: op
   enderbow.use.enderbow:
     description: Lets you use enderbow item
+    default: true
+  enderbow.bypass.use.enderpearl:
+    description: Lets you bypass obligation to have enderpearl
     default: op
