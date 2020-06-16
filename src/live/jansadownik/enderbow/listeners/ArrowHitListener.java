@@ -17,10 +17,9 @@ public class ArrowHitListener implements Listener {
         if (event.getEntity() instanceof Arrow) {
             if (event.getEntity().getShooter() instanceof Player) {
                 Player p = (Player) event.getEntity().getShooter();
-                ItemStack itemInHand = p.getItemInHand();
                 Arrow arrow = (Arrow) event.getEntity();
 
-                if (itemInHand.getEnchantmentLevel(Enchantment.ARROW_INFINITE) == 2) {
+                if (arrow.getCustomName().equals("EnderBowArrow")) {
                     arrow.remove();
                     Location arrowLocation = arrow.getLocation();
                     p.playSound(arrowLocation, Sound.ENDERMAN_TELEPORT, 10, 1);

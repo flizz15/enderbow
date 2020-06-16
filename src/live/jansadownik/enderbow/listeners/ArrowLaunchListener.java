@@ -20,6 +20,7 @@ public class ArrowLaunchListener implements Listener {
                     return;
                 }
                 Entity arrowToLaunch = event.getProjectile();
+                arrowToLaunch.setCustomName("EnderBowArrow");
                 arrowToLaunch.setVelocity(arrowToLaunch.getVelocity().multiply(1.2));
                 event.setProjectile(arrowToLaunch);
             }
