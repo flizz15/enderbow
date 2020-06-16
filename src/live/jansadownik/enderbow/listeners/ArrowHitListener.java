@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,13 +20,15 @@ public class ArrowHitListener implements Listener {
                 Player p = (Player) event.getEntity().getShooter();
                 Arrow arrow = (Arrow) event.getEntity();
 
-                if (arrow.getCustomName().equals("EnderBowArrow")) {
-                    arrow.remove();
-                    Location arrowLocation = arrow.getLocation();
-                    p.playSound(arrowLocation, Sound.ENDERMAN_TELEPORT, 10, 1);
-                    p.teleport(arrowLocation, PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
+                if (arrow.getCustomName() != null) {
+                    if (arrow.getCustomName().equals("EnderBowArrow")) {
+                        arrow.remove();
+                        Location arrowLocation = arrow.getLocation();
+                        p.playSound(arrowLocation, Sound.ENDERMAN_TELEPORT, 10, 1);
+                        p.teleport(arrowLocation, PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
+                    }
+                    return true;
                 }
-                return true;
             }
         }
         return false;
