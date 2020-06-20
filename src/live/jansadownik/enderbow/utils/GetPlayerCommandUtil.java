@@ -1,18 +1,22 @@
 package live.jansadownik.enderbow.utils;
 
-import live.jansadownik.enderbow.Messages;
+import live.jansadownik.enderbow.EnderBow;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class GetPlayerCommandUtil {
+    EnderBow plugin;
+
     CommandSender sender;
     String[] args;
 
     private String warning = "";
     private Player p = null;
 
-    public GetPlayerCommandUtil(CommandSender sender, String[] args) {
+    public GetPlayerCommandUtil(EnderBow plugin, CommandSender sender, String[] args) {
+        this.plugin = plugin;
+
         this.sender = sender;
         this.args = args;
     }
@@ -22,11 +26,11 @@ public class GetPlayerCommandUtil {
             if (getCommandExecutor().equals("player")) {
                 p = (Player) sender;
             } else {
-                warning = Messages.CommandTypePlayerName;
+                warning = plugin.getConfig().getString("messages.CommandTypePlayerName");
             }
         else {
             p = Bukkit.getPlayerExact(args[0]);
-            if (p == null) warning = Messages.CommandNoSuchPlayer;
+            if (p == null) warning = plugin.getConfig().getString("messages.CommandNoSuchPlayer");
         }
         return p;
     }

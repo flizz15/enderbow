@@ -2,19 +2,17 @@ package live.jansadownik.enderbow.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.inventory.ItemStack;
 
 public class ArrowHitListener implements Listener {
     @EventHandler
     public boolean onArrowHit(ProjectileHitEvent event) {
+        if (event.getEntity() == null) return false;
         if (event.getEntity() instanceof Arrow) {
             if (event.getEntity().getShooter() instanceof Player) {
                 Player p = (Player) event.getEntity().getShooter();

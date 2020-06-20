@@ -1,6 +1,6 @@
 package live.jansadownik.enderbow.listeners;
 
-import live.jansadownik.enderbow.Messages;
+import live.jansadownik.enderbow.EnderBow;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -10,31 +10,31 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-
 public class ArrowLaunchListener implements Listener {
+    EnderBow plugin;
+
+    public ArrowLaunchListener(EnderBow plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onArrowLaunch(EntityShootBowEvent event) {
         if (event.getEntity() instanceof Player)
             if (event.getBow().getEnchantmentLevel(Enchantment.ARROW_INFINITE) == 2) {
                 Player p = (Player) event.getEntity();
+
                 if (!p.hasPermission("enderbow.use.enderbow")) {
                     event.setCancelled(true);
-                    p.sendMessage(Messages.PlayerNotHavePermission);
+                    p.sendMessage(plugin.getConfig().getString("messages.PlayerNotHavePermission"));
                     return;
                 }
+
                 if (!p.hasPermission("enderbow.bypass.use.enderpearl")) {
                     if (!p.getInventory().contains(Material.ENDER_PEARL)) {
                         event.setCancelled(true);
-                        event.getEntity().sendMessage(
-                                Messages.parseMessage(Messages.PlayerNotHaveItem, new HashMap<String, String>() {{
-                                    put("%item%", "ender pearl");
-                                }})
-                        );
+                        p.sendMessage(plugin.getConfig().getString("messages.PlayerNotHaveEnderPearl"));
                         return;
                     } else {
-//                        p.getInventory().remove(new ItemStack(Material.ENDER_PEARL, 1));
                         p.getInventory().removeItem(new ItemStack(Material.ENDER_PEARL, 1));
                         p.updateInventory();
                     }
