@@ -1,6 +1,7 @@
 package live.jansadownik.enderbow;
 
 import live.jansadownik.enderbow.commands.EnderBowCommandExecutor;
+import live.jansadownik.enderbow.commands.SuperEnderBowCommand;
 import live.jansadownik.enderbow.config.ConfigParser;
 import live.jansadownik.enderbow.listeners.ArrowDamageEntityListener;
 import live.jansadownik.enderbow.listeners.ArrowHitListener;
@@ -15,6 +16,7 @@ public final class EnderBow extends JavaPlugin {
         ConfigParser configParser = new ConfigParser(this);
 
         getCommand("enderbow").setExecutor(new EnderBowCommandExecutor(this));
+        getCommand("superenderbow").setExecutor(new SuperEnderBowCommand(this));
 
         getServer().getPluginManager().registerEvents(new ArrowLaunchListener(this), this);
         getServer().getPluginManager().registerEvents(new ArrowHitListener(), this);

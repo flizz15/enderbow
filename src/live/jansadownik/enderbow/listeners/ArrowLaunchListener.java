@@ -45,5 +45,19 @@ public class ArrowLaunchListener implements Listener {
                 arrowToLaunch.setVelocity(arrowToLaunch.getVelocity().multiply(1.2));
                 event.setProjectile(arrowToLaunch);
             }
+            else if (event.getBow().getEnchantmentLevel(Enchantment.ARROW_INFINITE) == 3) {
+                Player p = (Player) event.getEntity();
+
+                if (!p.hasPermission("enderbow.use.superenderbow")) {
+                    event.setCancelled(true);
+                    p.sendMessage(plugin.getConfig().getString("messages.PlayerNotHavePermission"));
+                    return;
+                }
+
+                Entity arrowToLaunch = event.getProjectile();
+                arrowToLaunch.setCustomName("EnderBowArrow");
+                arrowToLaunch.setVelocity(arrowToLaunch.getVelocity().multiply(1.2));
+                event.setProjectile(arrowToLaunch);
+            }
     }
 }

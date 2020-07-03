@@ -8,19 +8,31 @@ commands:
     description: Gives enderbow
     permission: enderbow.command.enderbow
     usage: /<command> [player]
+  superenderbow:
+    description: Gives super enderbow
+    permission: enderbow.command.superenderbow
+    usage: /<command> [player]
 
 permissions:
   enderbow.*:
     description: Gives all permissions
     children:
       enderbow.command.enderbow: true
+      enderbow.command.superenderbow: true
       enderbow.use.enderbow: true
+      enderbow.use.superenderbow: true
       enderbow.bypass.use.enderpearl: true
   enderbow.command.enderbow:
     description: Lets you use /enderbow command
     default: op
+  enderbow.command.superenderbow:
+    description: Lets you use /superenderbow command
+    default: op
   enderbow.use.enderbow:
     description: Lets you use enderbow item
+    default: true
+  enderbow.use.superenderbow:
+    description: Lets you use super enderbow item
     default: true
   enderbow.bypass.use.enderpearl:
     description: Lets you bypass obligation to have enderpearl
